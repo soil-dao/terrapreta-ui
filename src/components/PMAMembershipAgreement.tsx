@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import '../styles/PMAMembershipAgreement.css';
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../config/contract';
 
 const PMAMembershipAgreement: React.FC = () => {
     const [hasRead, setHasRead] = useState(false);
@@ -12,19 +13,7 @@ const PMAMembershipAgreement: React.FC = () => {
         hash,
     });
 
-    // You'll need to replace this with your actual contract address
-    const CONTRACT_ADDRESS = "0x742d35Cc6632C0532c718e7b07F4dC694C8E9DD6" as const; // Placeholder address
-    
-    // ABI for the join function
-    const CONTRACT_ABI = [
-        {
-            "inputs": [],
-            "name": "join",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }
-    ] as const;
+    // Contract address and ABI are imported from src/config/contract.ts
 
     const handleSign = async () => {
         if (!hasRead) {
